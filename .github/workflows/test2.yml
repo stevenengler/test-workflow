@@ -1,0 +1,20 @@
+name: Test2
+
+on:
+  workflow_dispatch:
+    inputs:
+      commit:
+        description: 'Commit'
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          repository: stevenengler/test-workflow
+          ref: "${{ github.event.inputs.commit }}"
+      - name: Done
+        run: cat README.md
