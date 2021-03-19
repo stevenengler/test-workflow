@@ -13,8 +13,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        with:
-          repository: stevenengler/test-workflow
-          ref: "${{ github.event.inputs.commit }}"
+      - name: Checkout 2
+        run: |
+          git fetch ${{ github.event.inputs.commit }}
+          git checkout FETCH_HEAD
       - name: Done
         run: cat README.md
