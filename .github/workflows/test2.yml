@@ -3,19 +3,19 @@ name: Test2
 on:
   workflow_dispatch:
     inputs:
-      commit:
-        description: 'Commit'
+      ref:
+        description: "Full git ref (for example 'd7a71b83...' or 'pull/1234/head')"
         required: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Checkout 2
+      - name: Checkout ref
         run: |
-          git fetch ${{ github.event.inputs.commit }}
+          git fetch origin '${{ github.event.inputs.ref }}'
           git checkout FETCH_HEAD
       - name: Done
         run: cat README.md
