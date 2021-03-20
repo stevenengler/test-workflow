@@ -1,6 +1,8 @@
 name: Test2
 
 on:
+  schedule:
+    - cron: '*/5 * * * *'
   workflow_dispatch:
     inputs:
       ref:
@@ -14,6 +16,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Checkout ref
+        if: github.event.inputs.ref
         run: |
           git fetch origin '${{ github.event.inputs.ref }}'
           git checkout FETCH_HEAD
