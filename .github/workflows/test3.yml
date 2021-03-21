@@ -3,3 +3,10 @@ name: Test3
 on:
   push:
     branches: [main]
+
+jobs:
+  test3:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test
+        run: exit 1
