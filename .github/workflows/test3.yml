@@ -6,4 +6,3 @@ on:
 jobs:
   test3:
     runs-on: ubuntu-latest
-    steps:
